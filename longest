@@ -1,0 +1,15 @@
+def longest_increasing_subsequence(nums):
+    n = len(nums)
+    lis = [1] * n
+    for i in range(1, n):
+        for j in range(i):
+            if nums[i] > nums[j] and lis[i] < lis[j] + 1:
+                lis[i] = lis[j] + 1
+    max_length = max(lis)
+    subsequence = []
+    for i in range(n - 1, -1, -1):
+        if lis[i] == max_length:
+            subsequence.append(nums[i])
+            max_length -= 1
+    subsequence.reverse()
+    return subsequence
